@@ -30,7 +30,7 @@ app.use((req,res,next)=>{
             console.log('Error logging')
         }
     })
-    res.render('maintenance.hbs')
+    next()
 })
 
 app.use(express.static(__dirname+ '/public'))
@@ -60,6 +60,14 @@ app.get('/about',(req, res)=>{
 
 app.get('/bad',(req, res)=>{
     res.send({errorMessage:'Error handling request'})
+})
+
+app.get('/projects',(req, res)=>{
+    res.render('projects.hbs',{
+        pageTitle:'Project Page',
+        currentYear : new Date().getFullYear(),
+        welcomeMessage: 'Actual Portfolio'
+    })
 })
 
 app.listen(port,()=>console.log(`Listening 3000 port ${port}`))
